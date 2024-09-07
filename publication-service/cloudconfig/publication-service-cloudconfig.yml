@@ -1,0 +1,53 @@
+spring:
+  boot:
+    admin:
+      client:
+        enabled: false
+  datasource:
+    url: jdbc:h2:mem:vk_spring24v1_publication_db
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8082/realms/vk-spring24v1
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8082/realms/vk-spring24v1
+        registration:
+          keycloak:
+            client-id: publication-service-metrics-client
+            client-secret: f6u36pXYjs5gcTl8hEurjqWxZKy3uxbd
+            authorization-grant-type: client_credentials
+            scope:
+              - metrics_server
+          discovery:
+            provider: keycloak
+            client-id: publication-service
+            client-secret: un7x4kZWHEmXMhShcylvoGeVAHEQ1r8M
+            authorization-grant-type: client_credentials
+            scope:
+              - discovery
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: publication-service-swagger-ui
+      use-pkce-with-authorization-code-grant: true
+keycloak:
+  uri: http://localhost:8082
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
