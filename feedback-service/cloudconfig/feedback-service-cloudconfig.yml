@@ -1,0 +1,61 @@
+vk:
+  services:
+    publication:
+      url: lb://publication-service
+      registrationId: keycloak
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    enabled: true
+spring:
+  boot:
+    admin:
+      client:
+        enabled: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8082/realms/vk-spring24v1
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8082/realms/vk-spring24v1
+            user-name-attribute: preferred_username
+        registration:
+          metrics:
+            provider: keycloak
+            client-id: feedback-service-metrics-client
+            client-secret: lYZwR3r6luoBOIOORh4L25PUWdKJ2wOb
+            authorization-grant-type: client_credentials
+            scope:
+              - metrics_server
+          discovery:
+            provider: keycloak
+            client-id: feedback-service
+            client-secret: 6KTPIaWxVKlq5uFpBTo3F9hsdguucJ6S
+            authorization-grant-type: client_credentials
+            scope:
+              - discovery
+  datasource:
+    url: jdbc:h2:mem:vk_spring24v1_feedback_db
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: feedback-service-swagger-ui
+      use-pkce-with-authorization-code-grant: true
+keycloak:
+  uri: http://localhost:8082
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true

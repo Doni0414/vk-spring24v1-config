@@ -1,0 +1,61 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:vk_spring24v1_message_db
+  boot:
+    admin:
+      client:
+        enabled: false
+  jpa:
+    show-sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8082/realms/vk-spring24v1
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8082/realms/vk-spring24v1
+        registration:
+          discovery:
+            provider: keycloak
+            client-id: message-service
+            client-secret: gTcnPRT4MFgNrBbqUhccx9RsVjPEssXK
+            authorization-grant-type: client_credentials
+            scope:
+              - discovery
+          metrics:
+            provider: keycloak
+            client-id: message-service-metrics-client
+            client-secret: xkInP7x0PcOarPqtn2e8B0ytWnlPdN33
+            authorization-grant-type: client_credentials
+            scope:
+              - metrics_server
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    enabled: true
+vk:
+  services:
+    messenger:
+      url: lb://messenger-service
+springdoc:
+  swagger-ui:
+    oauth:
+      use-pkce-with-authorization-code-grant: true
+      client-id: message-service-swagger-ui
+keycloak:
+  uri: http://localhost:8082
+management:
+  health:
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
