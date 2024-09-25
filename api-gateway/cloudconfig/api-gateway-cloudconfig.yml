@@ -1,0 +1,62 @@
+ip: 172.28.160.1
+spring:
+  boot:
+    admin:
+      enabled: false
+  cloud:
+    gateway:
+      routes:
+        - id: publication-service-route
+          uri: lb://publication-service
+          predicates:
+            - Host=publication.api.vk.spring24v1.${ip}.nip.io
+        - id: feedback-service-route
+          uri: lb://feedback-service
+          predicates:
+            - Host=feedback.api.vk.spring24v1.${ip}.nip.io
+        - id: messenger-service-route
+          uri: lb://messenger-service
+          predicates:
+            - Host=messenger.api.vk.spring24v1.${ip}.nip.io
+        - id: message-service-route
+          uri: lb://message-service
+          predicates:
+            - Host=message.api.vk.spring24v1.${ip}.nip.io
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://${ip}:8082/realms/vk-spring24v1
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://${ip}:8082/realms/vk-spring24v1
+        registration:
+          discovery:
+            provider: keycloak
+            client-id: api-gateway
+            client-secret: C5gLeTTwZWzdKFSTHAR8dslXj0lM9lXC
+            authorization-grant-type: client_credentials
+            scope:
+              - discovery
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 1
+    hostname: ${ip}
+  client:
+    enabled: true
+#    register-with-eureka: false
+    service-url:
+      defaultZone: http://${ip}:8761/eureka/
+    registry-fetch-interval-seconds: 1
