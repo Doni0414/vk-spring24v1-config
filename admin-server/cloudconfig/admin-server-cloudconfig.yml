@@ -31,8 +31,11 @@ spring:
             issuer-uri: http://172.28.160.1:8082/realms/vk-spring24v1
 eureka:
   instance:
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 1
     prefer-ip-address: true
   client:
+    registry-fetch-interval-seconds: 1
     register-with-eureka: false
     service-url:
       defaultZone: http://172.28.160.1:8761/eureka/
