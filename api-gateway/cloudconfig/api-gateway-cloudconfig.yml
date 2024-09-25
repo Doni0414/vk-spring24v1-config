@@ -55,8 +55,6 @@ eureka:
     lease-expiration-duration-in-seconds: 1
     hostname: ${ip}
   client:
-    enabled: true
-#    register-with-eureka: false
     service-url:
       defaultZone: http://${ip}:8761/eureka/
     registry-fetch-interval-seconds: 1
