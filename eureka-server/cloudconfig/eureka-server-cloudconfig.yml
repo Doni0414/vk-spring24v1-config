@@ -16,7 +16,7 @@ spring:
         registration:
           keycloak:
             client-id: eureka-server
-            client-secret: te7lbHeqIaIQNglItMVPATmD0Qon1KKY
+            client-secret: 6TcnOuB341DEGEUHtdTKwAYn6UKiAxZ3
             scope:
               - openid
         provider:

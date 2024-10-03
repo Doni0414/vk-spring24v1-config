@@ -18,14 +18,14 @@ spring:
         registration:
           keycloak:
             client-id: publication-service-metrics-client
-            client-secret: f6u36pXYjs5gcTl8hEurjqWxZKy3uxbd
+            client-secret: A1U4t3qwVhljstZXqr2sc7FjjUxGU7ZG
             authorization-grant-type: client_credentials
             scope:
               - metrics_server
           discovery:
             provider: keycloak
             client-id: publication-service
-            client-secret: un7x4kZWHEmXMhShcylvoGeVAHEQ1r8M
+            client-secret: 6MduQQEaYVYFTIkkcHP5ex0x3UCJOxaF
             authorization-grant-type: client_credentials
             scope:
               - discovery

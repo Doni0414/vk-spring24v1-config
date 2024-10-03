@@ -11,21 +11,21 @@ spring:
             scope:
               - metrics
             client-id: admin-service
-            client-secret: NtOzpomYMzJSGnt4KnXVUcILksTmDzVB
+            client-secret: 6VvdtBPMoLxfL5IjeZGI0Giv6iqRADWa
           discovery:
             provider: keycloak
             authorization-grant-type: client_credentials
             scope:
               - discovery
             client-id: admin-service
-            client-secret: NtOzpomYMzJSGnt4KnXVUcILksTmDzVB
+            client-secret: 6VvdtBPMoLxfL5IjeZGI0Giv6iqRADWa
           login:
             provider: keycloak
             scope:
               - metrics
               - openid
             client-id: admin-service
-            client-secret: NtOzpomYMzJSGnt4KnXVUcILksTmDzVB
+            client-secret: 6VvdtBPMoLxfL5IjeZGI0Giv6iqRADWa
         provider:
           keycloak:
             issuer-uri: http://172.28.160.1:8082/realms/vk-spring24v1

@@ -21,14 +21,14 @@ spring:
           discovery:
             provider: keycloak
             client-id: message-service
-            client-secret: gTcnPRT4MFgNrBbqUhccx9RsVjPEssXK
+            client-secret: E52L6obMF53cFG0l8nLjYQbwdooLx0SH
             authorization-grant-type: client_credentials
             scope:
               - discovery
           metrics:
             provider: keycloak
             client-id: message-service-metrics-client
-            client-secret: xkInP7x0PcOarPqtn2e8B0ytWnlPdN33
+            client-secret: gOSvZOa2lOwhW0604oM51951qQSknwXk
             authorization-grant-type: client_credentials
             scope:
               - metrics_server
